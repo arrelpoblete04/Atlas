@@ -1,6 +1,8 @@
 package main
 
 import (
+	"net/http"
+
 	netflix "app.netflix/internal/Netflix"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
@@ -15,7 +17,12 @@ func main() {
 	router.Use(appendRequestIdLogging())
 	router.GET("/netflix", netflix.GetNetflixShow())
 
-	router.Run(":8000")
+	log.Info("Serving readiness probe at port: 8000")
+	err := http.ListenAndServe(":8000", router)
+
+	if err != nil {
+		log.Fatalf("Error during readiness probe startup: %v", err)
+	}
 
 }
 

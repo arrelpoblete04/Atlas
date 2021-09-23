@@ -1,33 +1,14 @@
-FROM golang:alpine
-
-# Set necessary environmet variables needed for our image
-ENV GO111MODULE=on \
-    CGO_ENABLED=0 \
-    GOOS=linux \
-    GOARCH=amd64
-
-# Move to working directory /build
+FROM golang:alpine as builder
+RUN mkdir /build
+ADD . /build/
 WORKDIR /build
-
-# Copy and download dependency using go mod
-COPY go.mod .
-COPY go.sum .
-RUN go mod download
-
-# Copy the code into the container
-COPY . .
-
-# Build the application
-RUN go build -o main ./cmd/main
-
-# Move to /dist directory as the place for resulting binary folder
-WORKDIR /dist
-
-# Copy binary from build to main folder
-RUN cp /build/main .
-
-# Export necessary port
-EXPOSE 3000
-
-# Command to run when starting the container
-CMD ["/dist/main"]
+RUN go mod tidy
+RUN go clean
+RUN CGO_ENABLED=0 GOOS=linux go test -v ./...
+RUN CGO_ENABLED=0 GOOS=linux go get github.com/securego/gosec/v2/cmd/gosec
+RUN CGO_ENABLED=0 GOOS=linux gosec ./...
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -ldflags '-extldflags "-static"' -mod=mod -o main ./cmd/main/
+FROM scratch
+COPY --from=builder /build/main /app/
+WORKDIR /app
+CMD ["./main"]
