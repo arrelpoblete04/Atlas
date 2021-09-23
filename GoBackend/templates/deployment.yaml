@@ -24,4 +24,17 @@ spec:
         - containerPort: 8000
         name: backend-service
         resources: {}
+        env:
+        - name: SAMPLE_VARIABLE
+          value: sample
+        - name: MY_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: my-secret
+              key: pwd
+        - name: MY_CONFIG
+          valueFrom:
+            configMapKeyRef:
+              name: my-sample-config
+              key: config
 status: {}
