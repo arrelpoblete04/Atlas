@@ -12,8 +12,8 @@ func GetFavoriteShow(name string) (error, NetflixResponse) {
 	}
 
 	netflixShow := NetflixShow{
-		Show:  "Squid Game",
-		Genre: "Thriller",
+		Show:  "Attack on titan",
+		Genre: "Violence",
 	}
 
 	person := Person{
