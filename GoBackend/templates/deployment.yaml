@@ -5,6 +5,7 @@ metadata:
   labels:
     app: backendgolang
   name: backendgolang
+  namespace: default
 spec:
   replicas: 4
   selector:
