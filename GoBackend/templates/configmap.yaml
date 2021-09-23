@@ -4,4 +4,4 @@ data:
 kind: ConfigMap
 metadata:
   creationTimestamp: null
-  name: my-config
+  name: my-sample-config
