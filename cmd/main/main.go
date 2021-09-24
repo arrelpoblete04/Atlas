@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	netflix "app.netflix/internal/Netflix"
+	database "app.netflix/internal/database"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 
@@ -12,6 +13,10 @@ import (
 
 func main() {
 
+	// dbCreds := database.Credentials{db_user, db_password}
+	s := database.DB()
+
+	log.Info("aa" + s.Ping().Error())
 	router := gin.Default()
 
 	router.Use(appendRequestIdLogging())
