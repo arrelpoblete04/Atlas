@@ -1,4 +1,4 @@
-module app.netflix
+module app.election
 
 go 1.17
 

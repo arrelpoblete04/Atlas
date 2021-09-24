@@ -1,4 +1,4 @@
-package netflix
+package election
 
 import (
 	"encoding/json"
@@ -26,47 +26,48 @@ func appendRequestIdLogging() gin.HandlerFunc {
 	}
 }
 
-func TestGetNetflixShow(t *testing.T) {
+func TestGetCandidateInfo(t *testing.T) {
 
 	scenarios := []struct {
 		testCase   string
 		name       string
+		urlPath    string
 		statusCode int
 	}{
-		{testCase: "Valid Name", name: "Arrel", statusCode: http.StatusOK},
-		{testCase: "Blank Name", name: "", statusCode: http.StatusBadRequest},
+		{testCase: "Valid Name", name: "Arrel", urlPath: "/election2022", statusCode: http.StatusOK},
+		{testCase: "Blank Name", name: "", urlPath: "/election2022", statusCode: http.StatusBadRequest},
+		{testCase: "Error 404", name: "Arrel", urlPath: "/electio022", statusCode: http.StatusOK},
 	}
 
 	for _, scenario := range scenarios {
 		t.Run(scenario.testCase, func(t *testing.T) {
 
-			urlPath := "/netflix"
-			request, errorNewRequest := http.NewRequest(http.MethodGet, urlPath, nil)
+			request, errorNewRequest := http.NewRequest(http.MethodGet, scenario.urlPath, nil)
 
 			if errorNewRequest != nil {
 				t.Errorf("Test Failed. There's an error in wrapping the request. %s", errorNewRequest.Error())
 			}
 
 			q := request.URL.Query()
-			q.Add("name", scenario.name)
+			q.Add("position", scenario.name)
 			request.URL.RawQuery = q.Encode()
 
 			r := gin.Default()
 			r.Use(appendRequestIdLogging())
 			rr := httptest.NewRecorder()
-			r.GET(urlPath, GetNetflixShow())
+			r.GET(scenario.urlPath, ElectionController())
 			r.ServeHTTP(rr, request)
 
 			t.Log(rr.Body)
 
-			var response NetflixResponse
+			var response ElectionResponse
 			err := json.Unmarshal(rr.Body.Bytes(), &response)
 			if err != nil {
 				t.Error("Error while unmarshalling response")
 			}
 
 			if response.StatusCode != scenario.statusCode {
-				t.Errorf("NetflixResponse status code: %v, Expected: %v", response.StatusCode,
+				t.Errorf("ElectionResponse status code: %v, Expected: %v", response.StatusCode,
 					scenario.statusCode)
 			}
 

@@ -1,10 +1,13 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
+	"net/url"
+	"os"
 
-	netflix "app.netflix/internal/Netflix"
-	database "app.netflix/internal/database"
+	election "app.election/internal/Election"
+	database "app.election/internal/database"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 
@@ -13,17 +16,18 @@ import (
 
 func main() {
 
-	// dbCreds := database.Credentials{db_user, db_password}
-	s := database.DB()
+	db_user := url.QueryEscape(os.Getenv("db_username"))
+	db_password := url.QueryEscape(os.Getenv("db_password"))
+	s := database.DB(db_user, db_password)
 
 	log.Info("aa" + s.Ping().Error())
 	router := gin.Default()
 
 	router.Use(appendRequestIdLogging())
-	router.GET("/netflix", netflix.GetNetflixShow())
+	router.GET("/election2022", election.ElectionController())
 
 	log.Info("Serving readiness probe at port: 8000")
-	err := http.ListenAndServe(":8000", router)
+	err := http.ListenAndServe(fmt.Sprintf(":%s", os.Getenv("PORT")), router)
 
 	if err != nil {
 		log.Fatalf("Error during readiness probe startup: %v", err)

@@ -17,9 +17,12 @@ type Credentials struct {
 	Password string
 }
 
-func Connect() {
+func Connect(credentials Credentials) {
 
 	log.Infoln("Starting to connect to database")
+	log.Infof("MySQL Kube: %s", os.Getenv("MYSQL_KUBE"))
+	log.Infof("DB Username: %s", credentials.User)
+	log.Infof("DB Password: %s", credentials.Password)
 
 	d, err := sql.Open("mysql", os.Getenv("MYSQL_KUBE"))
 
@@ -32,10 +35,15 @@ func Connect() {
 	db = d
 }
 
-func DB() *sql.DB {
+func DB(username, password string) *sql.DB {
+
+	credentials := Credentials{
+		User:     username,
+		Password: password,
+	}
 
 	if db == nil {
-		Connect()
+		Connect(credentials)
 	}
 	return db
 }
