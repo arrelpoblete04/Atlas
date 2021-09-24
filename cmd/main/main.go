@@ -20,6 +20,14 @@ func main() {
 	db_password := url.QueryEscape(os.Getenv("DB_PASSWORD"))
 	s := database.DB(db_user, db_password)
 
+	errorPing := s.Ping()
+
+	if errorPing != nil {
+		log.Errorf("Error in Ping")
+	} else {
+		log.Infof("No Error in Ping")
+	}
+
 	log.Info("aa" + s.Ping().Error())
 	router := gin.Default()
 
