@@ -27,6 +27,8 @@ spec:
         env:
         - name: SAMPLE_VARIABLE
           value: sample
+        - name: MYSQL_KUBE
+          value: root:password@tcp(10.1.0.57:3306/colors)
         - name: MY_SECRET
           valueFrom:
             secretKeyRef:
