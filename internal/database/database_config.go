@@ -1,10 +1,8 @@
 package database
 
 import (
-	// "database/sql"
-	// "database/sql"
-
 	"database/sql"
+	"os"
 
 	_ "github.com/go-sql-driver/mysql"
 	log "github.com/sirupsen/logrus"
@@ -23,7 +21,7 @@ func Connect() {
 
 	log.Infoln("Starting to connect to database")
 
-	d, err := sql.Open("mysql", "root:password@tcp(10.1.0.57:3306/colors")
+	d, err := sql.Open("mysql", os.Getenv("MYSQL_KUBE"))
 
 	if err != nil {
 		log.Fatalf("Error connecting to database: %s", err.Error())
