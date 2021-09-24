@@ -16,8 +16,8 @@ import (
 
 func main() {
 
-	db_user := url.QueryEscape(os.Getenv("db_username"))
-	db_password := url.QueryEscape(os.Getenv("db_password"))
+	db_user := url.QueryEscape(os.Getenv("DB_USERNAME"))
+	db_password := url.QueryEscape(os.Getenv("DB_PASSWORD"))
 	s := database.DB(db_user, db_password)
 
 	log.Info("aa" + s.Ping().Error())
