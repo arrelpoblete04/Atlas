@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: golang-task-two-gosec
+  name: golang-task-three-go-build
 spec:
   params:
     - name: CGO_ENABLED
@@ -10,23 +10,22 @@ spec:
       default: -v
     - name: GOOS
       default: linux
-    - name: packages
-      description: "packages to build (default: ./...)"
-      default: "./..."
+    - name: DEST_FOLDER
+      description: destination of main.go
+      default: './cmd/main'
 
   resources:
     inputs:
       - name: repo
         type: git
   steps:
-    - name: check-security
+    - name: run-build
       image: golang:alpine
       workingDir: /GolangBackend
       script: |
         cd /workspace/repo
         go env
-        go get github.com/securego/gosec/v2/cmd/gosec
-        gosec $(params.packages)
+        go build -o $(params.DEST_FOLDER) $(params.DEST_FOLDER)
       env:
         - name: CGO_ENABLED
           value: "$(params.CGO_ENABLED)"

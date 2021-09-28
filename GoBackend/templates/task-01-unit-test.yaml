@@ -24,8 +24,6 @@ spec:
       workingDir: /GolangBackend
       script: |
         cd /workspace/repo
-        pwd
-        ls
         go env
         go test $(params.FLAGS) $(params.packages)
       env:

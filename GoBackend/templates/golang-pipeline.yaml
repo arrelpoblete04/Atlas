@@ -1,0 +1,66 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: golang-pipeline
+spec:
+  resources:
+    - name: repo
+      type: git
+  tasks:
+  # Run unit test
+    - name: unit-test
+      params:
+        - name: CGO_ENABLED
+          value: "0"
+        - name: FLAGS
+          value: "-v"
+        - name: GOOS
+          value: "linux"
+        - name: packages
+          value: "./..."
+      resources:
+        inputs:
+          - name: repo
+            resource: repo
+      taskRef:
+        name: golang-task-one-unit-test
+
+  # Run Security Check
+    - name: security-check
+      params:
+        - name: CGO_ENABLED
+          value: "0"
+        - name: FLAGS
+          value: "-v"
+        - name: GOOS
+          value: "linux"
+        - name: packages
+          value: "./..."
+      resources:
+        inputs:
+          - name: repo
+            resource: repo
+      taskRef:
+        name: golang-task-two-gosec
+      runAfter:
+        - unit-test
+    
+      # Run Go Build
+    - name: go-build
+      params:
+        - name: CGO_ENABLED
+          value: "0"
+        - name: FLAGS
+          value: "-v"
+        - name: GOOS
+          value: "linux"
+        - name: DEST_FOLDER
+          value: './cmd/main'
+      resources:
+        inputs:
+          - name: repo
+            resource: repo
+      taskRef:
+        name: golang-task-three-go-build
+      runAfter:
+        - security-check

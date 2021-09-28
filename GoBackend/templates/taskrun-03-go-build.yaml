@@ -1,12 +1,12 @@
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
-  name: golang-taskrun
+  name: golang-taskrun-go-build
 spec:
   taskRef:
-    name: golang-task-two-gosec
+    name: golang-task-three-go-build
   resources:
     inputs:
       - name: repo
         resourceRef:
-          name: golang-pipeline
+          name: golang-pipeline-resource

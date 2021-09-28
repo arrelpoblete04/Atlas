@@ -1,4 +1,26 @@
-tkn task delete golang-unit-test-task-one --force
+
+
+tkn pipeline delete golang-pipeline --force
+kubectl apply -f golang-pipeline.yaml
+
+tkn pipelinerun delete golang-build-pipeline --force
+kubectl apply -f golang-pipelinerun.yaml
+tkn pipelinerun logs -f golang-build-pipeline
+
+
 tkn taskrun delete golang-taskrun --force
-kubectl apply -f task-01-unit-test.yaml
 kubectl apply -f golang-tekton-taskrun.yaml
+
+tkn task delete golang-task-one-unit-test --force
+kubectl apply -f task-01-unit-test.yaml
+
+tkn task delete golang-task-two-gosec --force
+kubectl apply -f task-02-go-security.yaml
+
+tkn task delete golang-task-three-go-build --force
+kubectl apply -f task-03-go-build.yaml
+
+tkn taskrun delete golang-taskrun-go-build --force
+kubectl apply -f taskrun-03-go-build.yaml
+tkn taskrun logs golang-taskrun-go-build -f
+
