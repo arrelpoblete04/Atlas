@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: golang-taskrun
+spec:
+  taskRef:
+    name: golang-task-one-unit-test
+  resources:
+    inputs:
+      - name: repo
+        resourceRef:
+          name: golang-pipeline

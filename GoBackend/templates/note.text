@@ -1,0 +1,4 @@
+tkn task delete golang-unit-test-task-one --force
+tkn taskrun delete golang-taskrun --force
+kubectl apply -f task-01-unit-test.yaml
+kubectl apply -f golang-tekton-taskrun.yaml

@@ -1,0 +1,36 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: golang-task-two-gosec
+spec:
+  params:
+    - name: CGO_ENABLED
+      default: "0"
+    - name: FLAGS
+      default: -v
+    - name: GOOS
+      default: linux
+    - name: packages
+      description: "packages to build (default: ./...)"
+      default: "./..."
+
+  resources:
+    inputs:
+      - name: repo
+        type: git
+  steps:
+    - name: run-test
+      image: golang:alpine
+      workingDir: /GolangBackend
+      script: |
+        cd /workspace/repo
+        pwd
+        ls
+        go env
+        go get github.com/securego/gosec/v2/cmd/gosec
+        gosec $(params.packages)
+      env:
+        - name: CGO_ENABLED
+          value: "$(params.CGO_ENABLED)"
+        - name: GOOS
+          value: "$(params.GOOS)"
