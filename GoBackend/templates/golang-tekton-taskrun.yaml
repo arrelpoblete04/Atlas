@@ -4,7 +4,7 @@ metadata:
   name: golang-taskrun
 spec:
   taskRef:
-    name: golang-task-one-unit-test
+    name: golang-task-two-gosec
   resources:
     inputs:
       - name: repo
