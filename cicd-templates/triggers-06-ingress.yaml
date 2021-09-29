@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1
+apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: ingress-resource
@@ -9,10 +9,7 @@ spec:
   rules:
     - http:
         paths:
-          - path: /hooks
-            pathType: Exact
+          - path: /
             backend:
-              service:
-                name: el-github-pr
-                port:
-                  number: 8080
+              serviceName: el-github-pr
+              servicePort: 8080

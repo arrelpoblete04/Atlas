@@ -26,6 +26,9 @@ tkn taskrun logs golang-taskrun-go-build -f
 
 -------------------------------------------------------
 
+kubectl apply -f golang-secret.yaml
+kubectl apply -f golang-service-account.yaml
+kubectl apply -f golang-tekton-pipeline-resource.yaml
 
 tkn task delete golang-task-one-go-build --force
 kubectl apply -f task-01-go-build.yaml
