@@ -17,7 +17,16 @@ spec:
       - name: repo
         type: git
   steps:
-  
+    - name: build-and-push
+      image: gcr.io/kaniko-project/executor:v1.3.0
+      env:
+        - name: DOCKER_CONFIG
+          value: /tekton/home/.docker
+      command:
+        - /kaniko/executor
+        - --dockerfile=Dockerfile
+        - --context=/workspace/repo
+        - --destination=$(params.IMAGE_REPO):$(params.IMAGE_TAG)
 
     - name: deploy-argocd
       image: argoproj/argocd:v1.7.7

@@ -4,6 +4,6 @@ metadata:
   name: argocd-env-configmap
 data:
   # Replace ARGOCD_SERVER with your ArgoCD server name (see https://medium.com/dzerolabs/installing-ambassador-argocd-and-tekton-on-kubernetes-540aacc983b9)
-  ARGOCD_SERVER: http://argocd-server:443
+  ARGOCD_SERVER: https://kubernetes.default.svc
   ARGOCD_APPLICATION_NAME: argolang-tekton
   ARGOCD_APPLICATION_REVISION: HEAD
