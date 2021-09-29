@@ -33,7 +33,7 @@ func main() {
 
 	router.Use(appendRequestIdLogging())
 	router.GET("/election2022", election.ElectionController())
-	log.Info("ArgoCD Tekton Github")
+	log.Info("ArgoCD Tekton Github - PR")
 	log.Info("Serving readiness probe at port: 8000")
 	err := http.ListenAndServe(fmt.Sprintf(":%s", os.Getenv("PORT")), router)
 
