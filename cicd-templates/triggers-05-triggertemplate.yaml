@@ -13,10 +13,10 @@ spec:
     - apiVersion: tekton.dev/v1beta1
       kind: PipelineRun
       metadata:
-        generateName: github-pr-pipeline-run-
+        generateName: github-pr-pipeline-run
       spec:
         pipelineRef:
-          name: github-pr-pipeline
+          name: golang-pipeline
         resources:
           - name: source
             resourceSpec:
