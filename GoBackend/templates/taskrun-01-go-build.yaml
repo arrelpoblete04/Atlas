@@ -1,10 +1,10 @@
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
-  name: golang-taskrun-go-security
+  name: golang-taskrun-one-go-build
 spec:
   taskRef:
-    name: golang-task-two-gosec
+    name: golang-task-one-go-build
   resources:
     inputs:
       - name: repo

@@ -1,10 +1,11 @@
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
-  name: golang-taskrun-go-build
+  name: taskrun-build-and-push
 spec:
+  serviceAccountName: golang-service-account
   taskRef:
-    name: golang-task-three-go-build
+    name: golang-task-two-docker-build-push
   resources:
     inputs:
       - name: repo

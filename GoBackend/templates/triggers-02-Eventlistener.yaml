@@ -1,0 +1,27 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: EventListener
+metadata:
+  name: github-pr
+spec:
+  serviceAccountName: tekton-triggers-golang-service-account
+  triggers:
+    - name: github-listener
+      interceptors:
+        - ref:
+            name: "github"
+          params:
+            - name: "secretRef"
+              value:
+                secretName: github-interceptor-secret ##found in triggers-03-secret.yaml
+                secretKey: secretToken
+            - name: "eventTypes"
+              value: ["pull_request"]
+        - ref:
+            name: "cel"
+          params:
+            - name: "filter"
+              value: "body.action in ['opened', 'synchronize', 'reopened']"
+      bindings:
+        - ref: github-pr-binding ##Name of PR Binding
+      template:
+        ref: github-pr-pipeline-template

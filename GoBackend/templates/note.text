@@ -3,16 +3,14 @@
 tkn pipeline delete golang-pipeline --force
 kubectl apply -f golang-pipeline.yaml
 
-tkn pipelinerun delete golang-build-pipeline --force
-kubectl apply -f golang-pipelinerun.yaml
-tkn pipelinerun logs -f golang-build-pipeline
+
 
 
 tkn taskrun delete golang-taskrun --force
 kubectl apply -f golang-tekton-taskrun.yaml
 
-tkn task delete golang-task-one-unit-test --force
-kubectl apply -f task-01-unit-test.yaml
+tkn task delete golang-task-one-go-build --force
+kubectl apply -f task-01-go-build.yaml
 
 tkn task delete golang-task-two-gosec --force
 kubectl apply -f task-02-go-security.yaml
@@ -20,7 +18,39 @@ kubectl apply -f task-02-go-security.yaml
 tkn task delete golang-task-three-go-build --force
 kubectl apply -f task-03-go-build.yaml
 
-tkn taskrun delete golang-taskrun-go-build --force
-kubectl apply -f taskrun-03-go-build.yaml
+tkn taskrun delete golang-taskrun-one-go-build --force
+kubectl apply -f taskrun-01-go-build.yaml
 tkn taskrun logs golang-taskrun-go-build -f
+
+
+
+-------------------------------------------------------
+
+
+tkn task delete golang-task-one-go-build --force
+kubectl apply -f task-01-go-build.yaml
+
+tkn task delete golang-task-two-docker-build-push --force
+kubectl apply -f task-02-docker.yaml
+
+tkn pipeline delete golang-pipeline --force
+kubectl apply -f golang-pipeline.yaml
+
+tkn pipelinerun delete golang-build-pipeline --force
+kubectl apply -f golang-pipelinerun.yaml
+tkn pipelinerun logs -f golang-build-pipeline
+
+
+
+------
+
+kubectl apply -f triggers-01-rbac-role.yaml
+kubectl apply -f triggers-02-Eventlistener.yaml
+kubectl apply -f triggers-03-secret.yaml
+kubectl apply -f triggers-04-triggerbinding.yaml
+kubectl apply -f triggers-05-triggertemplate.yaml
+kubectl apply -f triggers-06-ingress.yaml
+
+
+
 

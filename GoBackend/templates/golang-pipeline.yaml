@@ -7,26 +7,9 @@ spec:
     - name: repo
       type: git
   tasks:
-  # Run unit test
-    - name: unit-test
-      params:
-        - name: CGO_ENABLED
-          value: "0"
-        - name: FLAGS
-          value: "-v"
-        - name: GOOS
-          value: "linux"
-        - name: packages
-          value: "./..."
-      resources:
-        inputs:
-          - name: repo
-            resource: repo
-      taskRef:
-        name: golang-task-one-unit-test
 
-  # Run Security Check
-    - name: security-check
+  # Run unit test, Security Check and Go Build
+    - name: stage-one-go-build
       params:
         - name: CGO_ENABLED
           value: "0"
@@ -36,24 +19,6 @@ spec:
           value: "linux"
         - name: packages
           value: "./..."
-      resources:
-        inputs:
-          - name: repo
-            resource: repo
-      taskRef:
-        name: golang-task-two-gosec
-      runAfter:
-        - unit-test
-    
-      # Run Go Build
-    - name: go-build
-      params:
-        - name: CGO_ENABLED
-          value: "0"
-        - name: FLAGS
-          value: "-v"
-        - name: GOOS
-          value: "linux"
         - name: DEST_FOLDER
           value: './cmd/main'
       resources:
@@ -61,6 +26,15 @@ spec:
           - name: repo
             resource: repo
       taskRef:
-        name: golang-task-three-go-build
+        name: golang-task-one-go-build
+
+     # Build docker image and push to registry
+    - name: stage-two-build-and-push
+      taskRef:
+        name: golang-task-two-docker-build-push
       runAfter:
-        - security-check
+        - stage-one-go-build
+      resources:
+        inputs:
+          - name: repo      # name of the Task input (see Task definition)
+            resource: repo  # name of the Pipeline resource

@@ -3,6 +3,7 @@ kind: PipelineRun
 metadata:
   name: golang-build-pipeline
 spec:
+  serviceAccountName: golang-service-account
   pipelineRef:
     name: golang-pipeline
   resources:
