@@ -35,11 +35,12 @@ kubectl apply -f task-01-go-build.yaml
 
 tkn task delete golang-task-two-docker-build-push --force
 kubectl apply -f task-02-docker.yaml
-tkn task delete taskrun-build-and-push --force
+tkn taskrun delete taskrun-build-and-push --force
 kubectl apply -f taskrun-02-docker.yaml
 tkn taskrun logs -f taskrun-build-and-push
 
-
+tkn resource delete golang-pipeline-resource --force
+kubectl apply -f golang-tekton-pipeline-resource.yaml
 
 tkn pipeline delete golang-pipeline --force
 kubectl apply -f golang-pipeline.yaml

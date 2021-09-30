@@ -11,12 +11,11 @@ func GetCandidateInfo(position string) (error, ElectionResponse) {
 		return errors.New("Position should be included"), ElectionResponse{}
 	}
 
-	candidate := Candidate{
-		Name:     "Leni Robredo",
-		Position: "President",
+	candidateList := []Candidate{
+		{Name: "Leni Robredo", Position: "President"},
+		{Name: "Isko Moreno", Position: "President"},
+		{Name: "Manny Pacquiao", Position: "President"},
 	}
-
-	candidateList := []Candidate{candidate}
 
 	electionResponse := ElectionResponse{
 		StatusCode:  http.StatusOK,

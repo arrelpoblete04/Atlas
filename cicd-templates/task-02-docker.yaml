@@ -5,7 +5,7 @@ metadata:
 spec:
   params:
     - name: IMAGE_TAG
-      default: "mysqlgolang11"
+      default: "mysqlgolang14"
     - name: IMAGE_REPO
       default: "arrelpoblete/backend-service"
     - name: ARGO_APP

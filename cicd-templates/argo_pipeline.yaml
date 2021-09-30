@@ -1,15 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app-pipeline
-  namespace: argocd
+  name: app-pipelinekube
 spec:
   destination:
     server: https://kubernetes.default.svc
   project: default
   source:
     path: pipeline
-    repoURL: https://github.com/arrelpoblete04/GolangBackend
+    repoURL: 'https://github.com/arrelpoblete04/GolangBackend'
     targetRevision: HEAD
   syncPolicy:
     automated: {}
