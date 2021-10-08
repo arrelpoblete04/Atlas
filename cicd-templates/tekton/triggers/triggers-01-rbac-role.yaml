@@ -14,7 +14,7 @@ rules:
   verbs: ["get", "list", "watch"]
 - apiGroups: [""]
 # configmaps is needed for updating logging config
-  resources: ["configmaps"]
+  resources: ["configmaps", "secrets"]
   verbs: ["get", "list", "watch"]
 # Permissions to create resources in associated TriggerTemplates
 - apiGroups: ["tekton.dev"]
