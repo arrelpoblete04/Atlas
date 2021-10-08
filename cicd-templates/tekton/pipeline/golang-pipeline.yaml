@@ -32,7 +32,7 @@ spec:
     - name: stage-two-build-and-push
       params:
           - name: IMAGE_TAG
-            value: 'fromtekton2'
+            value: 'webhook1yehey'
           - name: IMAGE_REPO
             value: 'registry.ns0.civo.com/images/golangbackend'
           - name: ARGO_APP
