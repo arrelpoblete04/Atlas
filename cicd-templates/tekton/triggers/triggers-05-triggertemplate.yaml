@@ -19,7 +19,7 @@ spec:
         pipelineRef:
           name: golang-pipeline
         resources:
-          - name: source
+          - name: repo
             resourceSpec:
               type: git
               params:
