@@ -15,10 +15,11 @@ spec:
       metadata:
         generateName: github-pr-pipeline-run
       spec:
+        serviceAccountName: golang-service-account
         pipelineRef:
           name: golang-pipeline
         resources:
-          - name: source
+          - name: repo
             resourceSpec:
               type: git
               params:
