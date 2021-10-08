@@ -12,7 +12,7 @@ func ElectionController() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		logger := c.Value("requestLogger").(*log.Entry)
 
-		logger.Infoln("Start Election Controllser")
+		logger.Infoln("Start Election Controller")
 
 		position := c.Request.URL.Query().Get("position")
 

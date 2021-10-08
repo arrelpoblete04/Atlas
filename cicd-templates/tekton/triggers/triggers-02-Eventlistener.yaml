@@ -20,7 +20,7 @@ spec:
             name: "cel"
           params:
             - name: "filter"
-              value: "body.action in ['opened', 'synchronize', 'reopened']"
+              value: body.ref == 'refs/heads/main'
       bindings:
         - ref: github-pr-binding ##Name of PR Binding
       template:
