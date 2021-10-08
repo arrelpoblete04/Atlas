@@ -8,7 +8,8 @@ spec:
   rules:
     - http:
         paths:
-          - path: /
+          - path: /hooks
+            pathType: Exact
             backend:
               serviceName: el-github-pr
               servicePort: 8080
