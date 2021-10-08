@@ -15,7 +15,7 @@ spec:
                 secretName: github-interceptor-secret ##found in triggers-03-secret.yaml
                 secretKey: secretToken
             - name: "eventTypes"
-              value: ["pull_request"]
+              value: ["push"]
         - ref:
             name: "cel"
           params:
