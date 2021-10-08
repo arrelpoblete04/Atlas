@@ -5,17 +5,23 @@ metadata:
 spec:
   serviceAccountName: tekton-triggers-golang-service-account
   triggers:
-  - name: github-listener
-    interceptors:
-    - github:
-        secretRef:
-          secretName: github-trigger-secret
-          secretKey: secretToken
-        eventTypes:
-        - push
-    - cel:
-        filter: "body.ref == 'refs/heads/main'"
-    bindings:
-      - ref: github-pr-binding ##Name of PR Binding
-    template:
+    - name: github-listener
+      interceptors:
+        - ref:
+            name: "github"
+          params:
+            - name: "secretRef"
+              value:
+                secretName: github-interceptor-secret ##found in triggers-03-secret.yaml
+                secretKey: secretToken
+            - name: "eventTypes"
+              value: ["push"]
+        - ref:
+            name: "cel"
+          params:
+            - name: "filter"
+              value: "body.ref == 'refs/heads/main'"
+      bindings:
+        - ref: github-pr-binding ##Name of PR Binding
+      template:
         ref: github-pr-pipeline-template

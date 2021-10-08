@@ -8,7 +8,7 @@ import (
 func GetCandidateInfo(position string) (error, ElectionResponse) {
 
 	if position == "" {
-		return errors.New("Position shosuld be included."), ElectionResponse{}
+		return errors.New("Position shossuld be included."), ElectionResponse{}
 	}
 
 	candidateList := []Candidate{
