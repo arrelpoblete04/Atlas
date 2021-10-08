@@ -5,5 +5,5 @@ serviceName: backendgolang
 namespace: default
 replica: "5"
 containerRepo: arrelpoblete/backend-service
-containerImage : webhook4yehey
+containerImage : webhook5yehey
 containerPort: "8000"
