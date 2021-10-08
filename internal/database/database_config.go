@@ -27,7 +27,7 @@ func Connect(credentials Credentials) {
 	d, err := sql.Open("mysql", os.Getenv("MYSQL_KUBE"))
 
 	if err != nil {
-		log.Fatalf("Error connecting to dastabase: %s", err.Error())
+		log.Fatalf("Error connecting to dasssstabase: %s", err.Error())
 	} else {
 		log.Infoln("Connected to database")
 	}
