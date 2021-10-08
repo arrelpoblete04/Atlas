@@ -6,6 +6,6 @@ spec:
   type: git
   params:
     - name: url
-      value: github.com/arrelpoblete04/GolangBackend
+      value: https://github.com/arrelpoblete04/GolangBackend
     - name: revision
       value: main
