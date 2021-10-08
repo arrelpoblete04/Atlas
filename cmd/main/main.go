@@ -32,8 +32,10 @@ func main() {
 	router.Use(appendRequestIdLogging())
 	router.GET("/election2022", election.ElectionController())
 
-	log.Info("Serving readiness probe at port: 8000")
-	err := http.ListenAndServe(fmt.Sprintf(":%s", os.Getenv("PORT")), router)
+	port := os.Getenv("PORT")
+	
+	log.Infof("Serving readiness probe at port: %s", port)
+	err := http.ListenAndServe(fmt.Sprintf(":%s", port), router)
 
 	if err != nil {
 		log.Fatalf("Error during readiness probe startup: %v", err)
