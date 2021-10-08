@@ -6,8 +6,8 @@ spec:
   resources:
     - name: repo
       type: git
-  tasks:
 
+  tasks:
   # Run unit test, Security Check and Go Build
     - name: stage-one-go-build
       params:
@@ -30,6 +30,13 @@ spec:
 
      # Build docker image and push to registry
     - name: stage-two-build-and-push
+      params:
+          - name: IMAGE_TAG
+            value: 'fromtekton2'
+          - name: IMAGE_REPO
+            value: 'registry.ns0.civo.com/images/golangbackend'
+          - name: ARGO_APP
+            value: "argolang"
       taskRef:
         name: golang-task-two-docker-build-push
       runAfter:

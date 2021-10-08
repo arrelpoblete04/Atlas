@@ -3,11 +3,9 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"net/url"
 	"os"
 
 	election "app.election/internal/Election"
-	database "app.election/internal/database"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 
@@ -16,24 +14,25 @@ import (
 
 func main() {
 
-	db_user := url.QueryEscape(os.Getenv("DB_USERNAME"))
-	db_password := url.QueryEscape(os.Getenv("DB_PASSWORD"))
-	s := database.DB(db_user, db_password)
+	// db_user := url.QueryEscape(os.Getenv("DB_USERNAME"))
+	// db_password := url.QueryEscape(os.Getenv("DB_PASSWORD"))
+	// s := database.DB(db_user, db_password)
 
-	errorPing := s.Ping()
+	// errorPing := s.Ping()
 
-	if errorPing != nil {
-		log.Errorf("Error in Ping")
-	} else {
-		log.Infof("No Error in Ping")
-	}
+	// if errorPing != nil {
+	// 	log.Errorf("Error in Ping")
+	// } else {
+	// 	log.Infof("No Error in Ping")
+	// }
 
-	log.Info("aa" + s.Ping().Error())
+	// log.Info("aa" + s.Ping().Error())
 	router := gin.Default()
 
 	router.Use(appendRequestIdLogging())
 	router.GET("/election2022", election.ElectionController())
-	log.Info("ArgoCD Tekton Github - PR1")
+
+	log.Info("ArgoCD Tekton Github - PR2")
 	log.Info("Serving readiness probe at port: 8000")
 	err := http.ListenAndServe(fmt.Sprintf(":%s", os.Getenv("PORT")), router)
 
