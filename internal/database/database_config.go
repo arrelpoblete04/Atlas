@@ -22,7 +22,7 @@ func Connect(credentials Credentials) {
 	log.Infoln("Starting to connect to database")
 	log.Infof("MySQL Kube: %s", os.Getenv("MYSQL_KUBE"))
 	log.Infof("DB Username: %s", credentials.User)
-	log.Infof("DB Password: %s", credentials.Password)
+	log.Infof("DB Pass1word: %s", credentials.Password)
 
 	d, err := sql.Open("mysql", os.Getenv("MYSQL_KUBE"))
 
