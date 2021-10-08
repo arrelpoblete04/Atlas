@@ -50,3 +50,18 @@ spec:
         echo "Task 3 - Start Golang Build"
         go build -o $(params.DEST_FOLDER) $(params.DEST_FOLDER)
         echo "Task 3 - End Golang Build"
+
+---
+
+#apiVersion: tekton.dev/v1beta1
+#kind: TaskRun
+#metadata:
+#  name: golang-taskrun-one-go-build
+#spec:
+#  taskRef:
+#    name: golang-task-one-go-build
+#  resources:
+#    inputs:
+#      - name: repo
+#        resourceRef:
+#         name: golang-pipeline-resource

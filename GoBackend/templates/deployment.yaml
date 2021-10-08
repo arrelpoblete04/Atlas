@@ -3,32 +3,30 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: backendgolang
-  name: backendgolang
-  namespace: default
+    app: {{ .Values.serviceName }}
+  name: {{ .Values.serviceName }}
+  namespace: {{ .Values.namespace }}
 spec:
-  replicas: 3
+  replicas: {{ .Values.replica }}
   selector:
     matchLabels:
-      app: backendgolang
+      app: {{ .Values.serviceName }}
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: backendgolang
+        app: {{ .Values.serviceName }}
     spec:
       containers:
-      - image: {{ .Values.containerImage }}
+      - image: {{ .Values.containerRepo }}:{{ .Values.containerImage }}
         ports:
-        - containerPort: 8000
+        - containerPort: {{ .Values.containerPort }}
         name: backend-service
         resources: {}
         env:
         - name: PORT
-          value: "8000"
-        - name: MYSQL_KUBE
-          value: root:password@tcp(10.1.0.57:3306)/colors
+          value: {{ .Values.containerPort }}
         - name: DB_USERNAME
           valueFrom:
             secretKeyRef:

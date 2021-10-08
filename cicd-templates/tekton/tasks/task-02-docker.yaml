@@ -34,3 +34,20 @@ spec:
 #       set -e      
 #        argocd app sync $(params.ARGO_APP) --insecure
 #        argocd app wait $(params.ARGO_APP) --sync --health --operation --insecure
+
+--- 
+
+
+#apiVersion: tekton.dev/v1beta1
+#kind: TaskRun
+#metadata:
+#  name: taskrun-build-and-push
+#spec:
+#  serviceAccountName: golang-service-account
+#  taskRef:
+#    name: golang-task-two-docker-build-push
+#  resources:
+#    inputs:
+#      - name: repo
+#        resourceRef:
+#          name: golang-pipeline-resource

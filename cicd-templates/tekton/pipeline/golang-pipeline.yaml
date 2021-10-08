@@ -31,10 +31,10 @@ spec:
      # Build docker image and push to registry
     - name: stage-two-build-and-push
       params:
-          - name: IMAGE_TAG
-            value: 'webhook1yehey'
           - name: IMAGE_REPO
             value: 'registry.ns0.civo.com/images/golangbackend'
+          - name: IMAGE_TAG
+            value: 'webhook3yehey'
           - name: ARGO_APP
             value: "argolang"
       taskRef:

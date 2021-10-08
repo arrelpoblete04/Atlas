@@ -1,5 +1,9 @@
 # Default values for GoBackend.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-
-containerImage : arrelpoblete/backend-service:mysqlgolang7
+serviceName: backendgolang
+namespace: default
+replica: "5"
+containerRepo: arrelpoblete/backend-service
+containerImage : webhook3yehey
+containerPort: "8000"
