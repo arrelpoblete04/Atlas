@@ -5,17 +5,12 @@ metadata:
 spec:
   params:
     - name: CGO_ENABLED
-      default: "0"
     - name: FLAGS
-      default: -v
     - name: GOOS
-      default: linux
     - name: packages
       description: "packages to build (default: ./...)"
-      default: "./..."
     - name: DEST_FOLDER
       description: destination of main.go
-      default: './cmd/main'
 
   resources:
     inputs:

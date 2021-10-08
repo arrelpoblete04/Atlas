@@ -7,7 +7,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: pipeline
+    path: GoBackend 
     repoURL: 'https://github.com/arrelpoblete04/GolangBackend'
     targetRevision: HEAD
   syncPolicy:

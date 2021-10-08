@@ -36,7 +36,6 @@ func TestGetCandidateInfo(t *testing.T) {
 	}{
 		{testCase: "Valid Name", name: "Arrel", urlPath: "/election2022", statusCode: http.StatusOK},
 		{testCase: "Blank Name", name: "", urlPath: "/election2022", statusCode: http.StatusBadRequest},
-		{testCase: "Error 404", name: "Arrel", urlPath: "/electio022", statusCode: http.StatusOK},
 	}
 
 	for _, scenario := range scenarios {

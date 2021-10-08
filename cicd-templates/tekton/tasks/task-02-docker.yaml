@@ -5,13 +5,8 @@ metadata:
 spec:
   params:
     - name: IMAGE_TAG
-      default: "mysqlgolang14"
     - name: IMAGE_REPO
-      default: "arrelpoblete/backend-service"
     - name: ARGO_APP
-      default: "argolang"
-  
-      
   resources:
     inputs:
       - name: repo
@@ -28,14 +23,14 @@ spec:
         - --context=/workspace/repo
         - --destination=$(params.IMAGE_REPO):$(params.IMAGE_TAG)
 
-    - name: deploy-argocd
-      image: argoproj/argocd:v1.7.7
-      env:
-      - name: ARGOCD_SERVER
-        value: argocd-server.argocd
-      script: |
-        #!/usr/bin/env sh
-        echo "Start Deploying Argo!"
-        set -e
-        argocd app sync $(params.ARGO_APP) --insecure
-        argocd app wait $(params.ARGO_APP) --sync --health --operation --insecure
+#    - name: deploy-argocd
+#      image: argoproj/argocd:v1.7.7
+#      env:
+#      - name: ARGOCD_SERVER
+#        value: argocd-server.argocd
+#      script: |
+#        #!/usr/bin/env sh
+#        echo "Start Deploying Argo!"
+#       set -e      
+#        argocd app sync $(params.ARGO_APP) --insecure
+#        argocd app wait $(params.ARGO_APP) --sync --health --operation --insecure
