@@ -20,7 +20,7 @@ spec:
             name: "cel"
           params:
             - name: "filter"
-              value: "body.ref == 'refs/heads/main'"
+              value: "body.ref == 'refs/heads/master'"
       bindings:
         - ref: github-pr-binding ##Name of PR Binding
       template:
