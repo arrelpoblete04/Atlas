@@ -8,4 +8,4 @@ spec:
     - name: url
       value: https://github.com/arrelpoblete04/GolangBackend
     - name: revision
-      value: main
+      value: master
