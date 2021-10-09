@@ -3,12 +3,16 @@ package election
 import (
 	"errors"
 	"net/http"
+
+	log "github.com/sirupsen/logrus"
 )
 
-func GetCandidateInfo(position string) (error, ElectionResponse) {
+func GetCandidateInfo(logger *log.Entry, position string) (ElectionResponse, error) {
+
+	logger.Infoln("Start - GetCandidateInfo")
 
 	if position == "" {
-		return errors.New("Position should be included."), ElectionResponse{}
+		return ElectionResponse{}, errors.New("Position should be included.")
 	}
 
 	candidateList := []Candidate{
@@ -23,5 +27,7 @@ func GetCandidateInfo(position string) (error, ElectionResponse) {
 		Candidate:   candidateList,
 	}
 
-	return nil, electionResponse
+	logger.Infoln("End - GetCandidateInfo")
+
+	return electionResponse, nil
 }

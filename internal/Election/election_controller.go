@@ -18,10 +18,9 @@ func ElectionController() gin.HandlerFunc {
 
 		logger.Infof("Position: %s", position)
 
-		errCandidateResp, candidateResponse := GetCandidateInfo(position)
+		candidateResponse, errCandidateResp := GetCandidateInfo(logger, position)
 
 		configVariable := os.Getenv("MY_CONFIG")
-
 		log.Infof("Config Variable: %s", configVariable)
 
 		if errCandidateResp != nil {
@@ -35,6 +34,8 @@ func ElectionController() gin.HandlerFunc {
 			c.JSON(errNet.StatusCode, errNet)
 			return
 		}
+
+		logger.Infoln("End Election Controller")
 
 		c.JSON(candidateResponse.StatusCode, candidateResponse)
 		return
