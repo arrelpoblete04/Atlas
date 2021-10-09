@@ -26,7 +26,7 @@ spec:
         resources: {}
         env:
         - name: PORT
-          value: {{ .Values.containerPort }}
+          value: 8000
         - name: DB_USERNAME
           valueFrom:
             secretKeyRef:
