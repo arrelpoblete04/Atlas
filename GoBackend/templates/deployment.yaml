@@ -7,7 +7,7 @@ metadata:
   name: {{ .Values.serviceName }}
   namespace: {{ .Values.namespace }}
 spec:
-  replicas: {{ .Values.replica }}
+  replicas: 5
   selector:
     matchLabels:
       app: {{ .Values.serviceName }}
@@ -21,7 +21,7 @@ spec:
       containers:
       - image: {{ .Values.containerRepo }}:{{ .Values.containerImage }}
         ports:
-        - containerPort: {{ .Values.containerPort }}
+        - containerPort: 8000
         name: backend-service
         resources: {}
         env:
