@@ -18,7 +18,6 @@ func GetCandidateInfo(logger *log.Entry, position string) (ElectionResponse, err
 	candidateList := []Candidate{
 		{Name: "Leni Robredo", Position: "President"},
 		{Name: "Isko Moreno", Position: "President"},
-		{Name: "Manny Pacquiao", Position: "President"},
 	}
 
 	electionResponse := ElectionResponse{
