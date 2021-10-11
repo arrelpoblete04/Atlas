@@ -34,7 +34,7 @@ spec:
           - name: IMAGE_REPO
             value: 'registry.ns0.civo.com/images/golangbackend'
           - name: IMAGE_TAG
-            value: 'webhook2'
+            value: 'webhook4'
           - name: ARGO_APP
             value: "argolang"
       taskRef:
