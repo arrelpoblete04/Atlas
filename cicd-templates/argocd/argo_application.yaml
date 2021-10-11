@@ -1,14 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app-pipelinekube
+  name: argocd-tekton-pipeline
+  namespace: argocd
 spec:
+  project: default
   destination:
     server: https://kubernetes.default.svc
-  project: default
+    namespace: default
   source:
     path: GoBackend 
     repoURL: 'https://github.com/arrelpoblete04/GolangBackend'
-    targetRevision: HEAD
+    targetRevision: master
+
   syncPolicy:
     automated: {}
