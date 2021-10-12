@@ -3,23 +3,23 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: {{ .Values.serviceName }}
-  name: {{ .Values.serviceName }}
-  namespace: {{ .Values.namespace }}
+    app: {{ .Values.serviceName  | quote}}
+  name: {{ .Values.serviceName  | quote}}
+  namespace: {{ .Values.namespace  | quote}}
 spec:
   replicas: {{ .Values.replica }}
   selector:
     matchLabels:
-      app: {{ .Values.serviceName }}
+      app: {{ .Values.serviceName  | quote}}
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: {{ .Values.serviceName }}
+        app: {{ .Values.serviceName  | quote}}
     spec:
       containers:
-      - image: {{ .Values.containerImage }}
+      - image: {{ .Values.containerImage  | quote}}
         ports:
         - containerPort: {{ .Values.containerPort }}
         name: backend-service
