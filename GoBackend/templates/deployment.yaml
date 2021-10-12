@@ -21,7 +21,7 @@ spec:
       containers:
       - image: {{ .Values.containerImage }}
         ports:
-        - containerPort: 8000
+        - containerPort: {{ .Values.containerPort }}
         name: backend-service
         resources: {}
         env:
