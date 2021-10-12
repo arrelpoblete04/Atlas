@@ -34,7 +34,7 @@ spec:
           - name: IMAGE_REPO
             value: 'registry.ns0.civo.com/images/golangbackend'
           - name: IMAGE_TAG
-            value: '1.0.1'  ## These are the params needed on the Task two
+            value: '1.0.2'  ## These are the params needed on the Task two
       taskRef:
         name: golang-task-two-docker-build-push
       runAfter: ## With this spec, this task will only run after the stage-one-go-build
@@ -43,3 +43,19 @@ spec:
         inputs:
           - name: repo      # name of the Task input (see Task definition)
             resource: repo  # name of the Pipeline resource
+
+---
+# Pipeline Run
+
+#apiVersion: tekton.dev/v1beta1
+#kind: PipelineRun
+#metadata:
+#  name: golang-build-pipeline
+#spec:
+# serviceAccountName: golang-service-account
+# pipelineRef:
+#    name: golang-pipeline
+#  resources:
+#  - name: repo
+#    resourceRef:
+#      name: golang-pipeline-resource
