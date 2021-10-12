@@ -26,7 +26,7 @@ spec:
         resources: {}
         env:
         - name: PORT
-          value: "8000"
+          value: {{ .Values.containerPort }}
         - name: MYSQL_KUBE
           value: root:password@tcp(10.1.0.57:3306)/colors
         - name: DB_USERNAME
