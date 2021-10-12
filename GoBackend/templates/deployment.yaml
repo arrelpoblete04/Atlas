@@ -3,20 +3,20 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: {{ .Values.serviceName }}
-  name: {{ .Values.serviceName }}
-  namespace: {{ .Values.namespace }}
+    app: backendgolang
+  name: backendgolang
+  namespace: default
 spec:
-  replicas: {{ .Values.replica }}
+  replicas: 3
   selector:
     matchLabels:
-      app: {{ .Values.serviceName }}
+      app: backendgolang
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: {{ .Values.serviceName }}
+        app: backendgolang
     spec:
       containers:
       - image: {{ .Values.containerImage }}
