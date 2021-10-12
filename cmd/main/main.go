@@ -20,20 +20,13 @@ func main() {
 
 	// errorPing := s.Ping()
 
-	// if errorPing != nil {
-	// 	log.Errorf("Error in Ping")
-	// } else {
-	// 	log.Infof("No Error in Ping")
-	// }
-
-	// log.Info("aa" + s.Ping().Error())
 	router := gin.Default()
 
 	router.Use(appendRequestIdLogging())
 	router.GET("/election2022", election.ElectionController())
 
 	port := os.Getenv("PORT")
-	
+
 	log.Infof("Serving readiness probe at port: %s", port)
 	err := http.ListenAndServe(fmt.Sprintf(":%s", port), router)
 
