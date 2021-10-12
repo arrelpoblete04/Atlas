@@ -8,7 +8,6 @@ spec:
       description: The image registry
     - name: IMAGE_TAG
       description: tag of the docker image
-    - name: ARGO_APP
   resources:
     inputs:
       - name: repo
