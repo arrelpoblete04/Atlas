@@ -8,7 +8,7 @@ spec:
       description: The git revision (SHA)
       default: master
     - name: gitrepositoryurl
-      description: The git repository url ("https://github.com/arrelpoblete04/GolangBackend")
+      description: The git repository url
   resourcetemplates:
     - apiVersion: tekton.dev/v1beta1
       kind: PipelineRun
