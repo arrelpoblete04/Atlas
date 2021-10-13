@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 serviceName: backendgolang
 namespace: stage
-replica: 5
+replica: 3
 containerRepo: arrelpoblete/backend-service
 containerImage : registry.ns0.civo.com/images/golangbackend:1.0.2
 containerPort: 8000
