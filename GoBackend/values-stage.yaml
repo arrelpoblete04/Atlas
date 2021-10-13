@@ -1,9 +1,9 @@
 # Default values for GoBackend.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-serviceName: backendgolang
+#serviceName: backendgolang
 namespace: stage
 replica: 3
-containerRepo: arrelpoblete/backend-service
-containerImage : registry.ns0.civo.com/images/golangbackend:1.0.2
-containerPort: 8000
+#containerRepo: arrelpoblete/backend-service
+#containerImage : registry.ns0.civo.com/images/golangbackend:1.0.2
+#containerPort: 8000
