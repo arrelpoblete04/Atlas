@@ -12,7 +12,7 @@ func GetCandidateInfo(logger *log.Entry, position string) (ElectionResponse, err
 	logger.Infoln("Start - GetCandidateInfo")
 
 	if position == "" {
-		return ElectionResponse{}, errors.New("Parameter Position should not be empty.")
+		return ElectionResponse{}, errors.New("Parameter ''Position' should not be empty.")
 	}
 
 	candidateList := []Candidate{
