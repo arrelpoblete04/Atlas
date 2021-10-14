@@ -19,7 +19,7 @@ spec:
         app: {{ .Values.serviceName  | quote}}
     spec:
       containers:
-      - image: {{ .Values.containerImage  | quote}}
+      - image: {{ .Values.repo }}/{{ .Values.image }}:{{.Chart.AppVersion}}
         ports:
         - containerPort: {{ .Values.containerPort }}
         name: backend-service
