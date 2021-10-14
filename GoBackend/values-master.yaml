@@ -5,5 +5,5 @@ serviceName: backendgolang
 namespace: default
 replica: 5
 containerRepo: arrelpoblete/backend-service
-containerImage : registry.ns0.civo.com/images/golangbackend:1.0.4
+containerImage : registry.ns0.civo.com/images/golangbackend:1.0.5
 containerPort: 8000
