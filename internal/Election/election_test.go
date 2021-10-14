@@ -34,7 +34,7 @@ func TestGetCandidateInfo(t *testing.T) {
 		urlPath    string
 		statusCode int
 	}{
-		{testCase: "Valid Name", name: "Arrel", urlPath: "/election2022", statusCode: http.StatusOK},
+		{testCase: "Valid Name", name: "president", urlPath: "/election2022", statusCode: http.StatusOK},
 		{testCase: "Blank Name", name: "", urlPath: "/election2022", statusCode: http.StatusBadRequest},
 	}
 
