@@ -1,7 +1,7 @@
 # Default values for GoBackend.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-namespace: stage
+namespace: default
 replica: 4
 repo: registry.ns0.civo.com
 image: images/golangbackend
