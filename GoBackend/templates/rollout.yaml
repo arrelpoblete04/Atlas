@@ -3,7 +3,7 @@ kind: Rollout
 metadata:
   name: backendgolang-rollout
 spec:
-  replicas: 3
+  replicas: 5
   selector:
     matchLabels:
       app: backendgolang
