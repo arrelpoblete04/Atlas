@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: backend-service
-        image: registry.ns0.civo.com/images/golangbackend:1.1.8-stage
+        image: {{ .Values.repo }}/{{ .Values.image }}:{{.Chart.AppVersion}}
         ports:
         - containerPort: 8000
         env:
