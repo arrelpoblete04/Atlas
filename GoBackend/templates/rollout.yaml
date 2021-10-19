@@ -1,25 +1,32 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
-  name: backendgolang-rollout
+  creationTimestamp: null
+  labels:
+    app: {{ .Values.serviceName  | quote}}
+  name: {{ .Values.serviceName  | quote}}
+  namespace: {{ .Values.namespace  | quote}}
 spec:
-  replicas: 5
+  replicas: {{ .Values.replica }}
   selector:
     matchLabels:
-      app: backendgolang
+      app: {{ .Values.serviceName  | quote}}
+  strategy: {}
   template:
     metadata:
+      creationTimestamp: null
       labels:
-        app: backendgolang
+        app: {{ .Values.serviceName  | quote}}
     spec:
       containers:
-      - name: backend-service
-        image: {{ .Values.repo }}/{{ .Values.image }}:{{.Chart.AppVersion}}
+      - image: {{ .Values.repo }}/{{ .Values.image }}:{{.Chart.AppVersion}}
         ports:
-        - containerPort: 8000
+        - containerPort: {{ .Values.containerPort }}
+        name: backend-service
+        resources: {}
         env:
         - name: PORT
-          value: "8000"
+          value: {{ .Values.containerPort | quote}}
         - name: MYSQL_KUBE
           value: root:password@tcp(10.1.0.57:3306)/colors
         - name: DB_USERNAME
@@ -46,6 +53,6 @@ spec:
       steps:
       - setWeight: 10
       - pause:
-          duration: 1m # 1 hour
+          duration: 1m # 1 minute
       - setWeight: 20
       - pause: {} # pause indefinitely
