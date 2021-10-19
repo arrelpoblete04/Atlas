@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-stable
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    nginx.ingress.kubernetes.io/canary: "true"
+    nginx.ingress.kubernetes.io/canary-weight: "5"
+spec:
+  rules:
+  - host: rollouts-gobackend
+    http:
+      paths:
+      - backend:
+          serviceName: {{ .Values.serviceNameCanary  | quote}}
+          servicePort: 80
+
+---
+
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-canary
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+  - host: rollouts-gobackend
+    http:
+      paths:
+      - path: /
+        backend:
+          # Reference to a Service name, also specified in the Rollout spec.strategy.canary.stableService field
+          serviceName: {{ .Values.serviceName  | quote}}
+          servicePort: 80
