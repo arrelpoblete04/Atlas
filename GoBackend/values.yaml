@@ -7,4 +7,4 @@ repo: registry.ns0.civo.com
 image: images/golangbackend
 replica: 3
 containerPort: 8000
-serviceNameCanary: backendgolang
+serviceNameCanary: backendgolang-canary
