@@ -1,0 +1,51 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: backendgolang-rollout
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: backendgolang
+  template:
+    metadata:
+      labels:
+        app: backendgolang
+    spec:
+      containers:
+      - name: backend-service
+        image: registry.ns0.civo.com/images/golangbackend:1.1.8-stage
+        ports:
+        - containerPort: 8000
+        env:
+        - name: PORT
+          value: "8000"
+        - name: MYSQL_KUBE
+          value: root:password@tcp(10.1.0.57:3306)/colors
+        - name: DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: my-database-credentials
+              key: db_username
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: my-database-credentials
+              key: db_password
+        - name: MY_CONFIG
+          valueFrom:
+            configMapKeyRef:
+              name: my-sample-config
+              key: config
+  minReadySeconds: 30
+  revisionHistoryLimit: 3
+  strategy:
+    canary: #Indicates that the rollout should use the Canary strategy
+      maxSurge: "25%"
+      maxUnavailable: 0
+      steps:
+      - setWeight: 10
+      - pause:
+          duration: 1h # 1 hour
+      - setWeight: 20
+      - pause: {} # pause indefinitely

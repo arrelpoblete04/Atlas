@@ -1,47 +1,47 @@
-﻿apiVersion: apps/v1
-kind: Deployment
-metadata:
-  creationTimestamp: null
-  labels:
-    app: {{ .Values.serviceName  | quote}}
-  name: {{ .Values.serviceName  | quote}}
-  namespace: {{ .Values.namespace  | quote}}
-spec:
-  replicas: {{ .Values.replica }}
-  selector:
-    matchLabels:
-      app: {{ .Values.serviceName  | quote}}
-  strategy: {}
-  template:
-    metadata:
-      creationTimestamp: null
-      labels:
-        app: {{ .Values.serviceName  | quote}}
-    spec:
-      containers:
-      - image: {{ .Values.repo }}/{{ .Values.image }}:{{.Chart.AppVersion}}
-        ports:
-        - containerPort: {{ .Values.containerPort }}
-        name: backend-service
-        resources: {}
-        env:
-        - name: PORT
-          value: {{ .Values.containerPort | quote}}
-        - name: MYSQL_KUBE
-          value: root:password@tcp(10.1.0.57:3306)/colors
-        - name: DB_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: my-database-credentials
-              key: db_username
-        - name: DB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: my-database-credentials
-              key: db_password
-        - name: MY_CONFIG
-          valueFrom:
-            configMapKeyRef:
-              name: my-sample-config
-              key: config
-status: {}
+﻿# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   creationTimestamp: null
+#   labels:
+#     app: {{ .Values.serviceName  | quote}}
+#   name: {{ .Values.serviceName  | quote}}
+#   namespace: {{ .Values.namespace  | quote}}
+# spec:
+#   replicas: {{ .Values.replica }}
+#   selector:
+#     matchLabels:
+#       app: {{ .Values.serviceName  | quote}}
+#   strategy: {}
+#   template:
+#     metadata:
+#       creationTimestamp: null
+#       labels:
+#         app: {{ .Values.serviceName  | quote}}
+#     spec:
+#       containers:
+#       - image: {{ .Values.repo }}/{{ .Values.image }}:{{.Chart.AppVersion}}
+#         ports:
+#         - containerPort: {{ .Values.containerPort }}
+#         name: backend-service
+#         resources: {}
+#         env:
+#         - name: PORT
+#           value: {{ .Values.containerPort | quote}}
+#         - name: MYSQL_KUBE
+#           value: root:password@tcp(10.1.0.57:3306)/colors
+#         - name: DB_USERNAME
+#           valueFrom:
+#             secretKeyRef:
+#               name: my-database-credentials
+#               key: db_username
+#         - name: DB_PASSWORD
+#           valueFrom:
+#             secretKeyRef:
+#               name: my-database-credentials
+#               key: db_password
+#         - name: MY_CONFIG
+#           valueFrom:
+#             configMapKeyRef:
+#               name: my-sample-config
+#               key: config
+# status: {}
