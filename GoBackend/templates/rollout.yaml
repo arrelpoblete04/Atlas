@@ -1,62 +1,62 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: Rollout
-# metadata:
-#   creationTimestamp: null
-#   labels:
-#     app: "backendgolang"
-#   name: "backendgolang"
-#   namespace: "default"
-# spec:
-#   replicas: 5
-#   selector:
-#     matchLabels:
-#       app: "backendgolang"
-#   template:
-#     metadata:
-#       creationTimestamp: null
-#       labels:
-#         app: "backendgolang"
-#     spec:
-#       containers:
-#       - image: registry.ns0.civo.com/images/golangbackend:1.1.17-canary
-#         ports:
-#         - containerPort: 8000
-#         name: backend-service
-#         resources: {}
-#         env:
-#         - name: PORT
-#           value: "8000"
-#         - name: MYSQL_KUBE
-#           value: root:password@tcp(10.1.0.57:3306)/colors
-#         - name: DB_USERNAME
-#           valueFrom:
-#             secretKeyRef:
-#               name: my-database-credentials
-#               key: db_username
-#         - name: DB_PASSWORD
-#           valueFrom:
-#             secretKeyRef:
-#               name: my-database-credentials
-#               key: db_password
-#         - name: MY_CONFIG
-#           valueFrom:
-#             configMapKeyRef:
-#               name: my-sample-config
-#               key: config
-#   minReadySeconds: 30
-#   revisionHistoryLimit: 3
-#   strategy:
-#     canary: #Indicates that the rollout should use the Canary strategy
-#       canaryService: "backendgolang-canary"
-#       maxSurge: "25%"
-#       maxUnavailable: 0
-#       steps:
-#       - setWeight: 10
-#       - pause:
-#           duration: 1m # 1 minute
-#       - setWeight: 20
-#       - pause: {} # pause indefinitely
-#       # blueGreen:
-#       #    autoPromotionEnabled: false
-#       #    activeService: backendgolang
-#       #    previewService: backendgolang-canary
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  creationTimestamp: null
+  labels:
+    app: "backendgolang"
+  name: "backendgolang"
+  namespace: "default"
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: "backendgolang"
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: "backendgolang"
+    spec:
+      containers:
+      - image: registry.ns0.civo.com/images/golangbackend:1.1.17-canary
+        ports:
+        - containerPort: 8000
+        name: backend-service
+        resources: {}
+        env:
+        - name: PORT
+          value: "8000"
+        - name: MYSQL_KUBE
+          value: root:password@tcp(10.1.0.57:3306)/colors
+        - name: DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: my-database-credentials
+              key: db_username
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: my-database-credentials
+              key: db_password
+        - name: MY_CONFIG
+          valueFrom:
+            configMapKeyRef:
+              name: my-sample-config
+              key: config
+  minReadySeconds: 30
+  revisionHistoryLimit: 3
+  strategy:
+    canary: #Indicates that the rollout should use the Canary strategy
+      canaryService: "backendgolang-canary"
+      maxSurge: "25%"
+      maxUnavailable: 0
+      steps:
+      - setWeight: 10
+      - pause:
+          duration: 1m # 1 minute
+      - setWeight: 20
+      - pause: {} # pause indefinitely
+      # blueGreen:
+      #    autoPromotionEnabled: false
+      #    activeService: backendgolang
+      #    previewService: backendgolang-canary
