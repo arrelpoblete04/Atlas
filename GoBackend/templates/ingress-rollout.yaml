@@ -10,7 +10,7 @@ spec:
   - host: rollouts-gobackend
     http:
       paths:
-      - path: /
+      - path: /election2022
         backend:
           serviceName: {{ .Values.serviceName  | quote}}
           servicePort: 8080
