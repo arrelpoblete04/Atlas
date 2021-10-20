@@ -4,8 +4,6 @@ metadata:
   name: ingress-stable
   annotations:
     kubernetes.io/ingress.class: traefik
-    nginx.ingress.kubernetes.io/canary: "true"
-    nginx.ingress.kubernetes.io/canary-weight: "5"
 spec:
   rules:
   - host: rollouts-gobackend
@@ -23,6 +21,8 @@ metadata:
   name: ingress-canary
   annotations:
     kubernetes.io/ingress.class: traefik
+    nginx.ingress.kubernetes.io/canary: "true"
+    nginx.ingress.kubernetes.io/canary-weight: "5"
 spec:
   rules:
   - host: rollouts-gobackend-canary
