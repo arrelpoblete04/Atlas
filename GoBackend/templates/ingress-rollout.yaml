@@ -11,7 +11,7 @@ spec:
       paths:
       - backend:
           serviceName: {{ .Values.serviceName  | quote}}
-          servicePort: 80
+          servicePort: 8080
 
 ---
 
@@ -32,4 +32,4 @@ spec:
         backend:
           # Reference to a Service name, also specified in the Rollout spec.strategy.canary.stableService field
           serviceName: {{ .Values.serviceNameCanary  | quote}}
-          servicePort: 80
+          servicePort: 8080
