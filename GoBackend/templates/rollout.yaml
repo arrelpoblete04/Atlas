@@ -3,29 +3,29 @@ kind: Rollout
 metadata:
   creationTimestamp: null
   labels:
-    app: "backendgolang"
-  name: "backendgolang"
-  namespace: "default"
+    app: {{ .Values.serviceName  | quote}}
+  name: {{ .Values.serviceName  | quote}}
+  namespace: {{ .Values.namespace  | quote}}
 spec:
-  replicas: 5
+  replicas: {{ .Values.replica }}
   selector:
     matchLabels:
-      app: "backendgolang"
+      app: {{ .Values.serviceName  | quote}}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: "backendgolang"
+        app: {{ .Values.serviceName  | quote}}
     spec:
       containers:
-      - image: registry.ns0.civo.com/images/golangbackend:1.1.17-canary
+      - image: {{ .Values.repo }}/{{ .Values.image }}:{{.Chart.AppVersion}}
         ports:
-        - containerPort: 8000
+        - containerPort: {{ .Values.containerPort }}
         name: backend-service
         resources: {}
         env:
         - name: PORT
-          value: "8000"
+          value: {{ .Values.containerPort | quote}}
         - name: MYSQL_KUBE
           value: root:password@tcp(10.1.0.57:3306)/colors
         - name: DB_USERNAME
@@ -47,7 +47,7 @@ spec:
   revisionHistoryLimit: 3
   strategy:
     canary: #Indicates that the rollout should use the Canary strategy
-      canaryService: "backendgolang-canary"
+      canaryService: {{ .Values.serviceNameCanary  | quote}}
       maxSurge: "25%"
       maxUnavailable: 0
       steps:
