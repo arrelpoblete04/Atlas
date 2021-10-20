@@ -10,7 +10,7 @@ spec:
   - host: rollouts-gobackend
     http:
       paths:
-      - path: /election2022
+      - path: /
         backend:
           serviceName: {{ .Values.serviceName  | quote}}
           servicePort: 8080
@@ -31,6 +31,7 @@ spec:
     http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
           # Reference to a Service name, also specified in the Rollout spec.strategy.canary.stableService field
           serviceName: {{ .Values.serviceNameCanary  | quote}}
