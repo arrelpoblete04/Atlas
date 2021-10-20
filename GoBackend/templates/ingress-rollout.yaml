@@ -10,7 +10,8 @@ spec:
   - host: rollouts-gobackend
     http:
       paths:
-      - backend:
+      - path: /
+        backend:
           serviceName: {{ .Values.serviceName  | quote}}
           servicePort: 8080
 
