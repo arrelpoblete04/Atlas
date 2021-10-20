@@ -25,7 +25,7 @@ metadata:
     kubernetes.io/ingress.class: traefik
 spec:
   rules:
-  - host: rollouts-gobackend
+  - host: rollouts-gobackend-canary
     http:
       paths:
       - path: /
