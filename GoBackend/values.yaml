@@ -5,6 +5,6 @@ serviceName: backendgolang
 namespace: default
 repo: registry.ns0.civo.com
 image: images/golangbackend
-replica: 5
+replica: 4
 containerPort: 8000
 serviceNameCanary: backendgolang-canary
