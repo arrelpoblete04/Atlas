@@ -7,10 +7,10 @@ metadata:
     ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: psbonline-stabe.development.ns1.civo.com
+  - host: psbonline-stable.development.ns1.civo.com
     http:
       paths:
-      - path: /
+      - path: /election2022
         backend:
           serviceName: {{ .Values.serviceName  | quote}}
           servicePort: 8080
