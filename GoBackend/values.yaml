@@ -8,3 +8,5 @@ image: images/golangbackend
 replica: 5
 containerPort: 8000
 serviceNameCanary: backendgolang-canary
+ingressStable: psbonline-stable.development.ns1.civo.com
+ingressCanary: psbonline-canary.development.ns1.civo.com
