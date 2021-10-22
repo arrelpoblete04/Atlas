@@ -7,7 +7,7 @@ metadata:
     traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
   rules:
-  - host: psbonline-stable.development.ns1.civo.com
+  - host: psbonline-stable.staging.ns1.civo.com
     http:
       paths:
       - path: /election2022
@@ -26,7 +26,7 @@ metadata:
     traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
   rules:
-  - host: psbonline-canary.development.ns1.civo.com
+  - host: psbonline-canary.staging.ns1.civo.com
     http:
       paths:
       - path: /election2022
