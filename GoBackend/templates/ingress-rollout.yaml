@@ -4,6 +4,7 @@ metadata:
   name: ingress-stable
   annotations:
     kubernetes.io/ingress.class: traefik
+    traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
   rules:
   - host: psbonline-stable.development.ns1.civo.com
@@ -13,7 +14,7 @@ spec:
         pathType: Prefix
         backend:
           serviceName: {{ .Values.serviceName  | quote}}
-          servicePort: 8080
+          servicePort: 8000
 
 ---
 
@@ -23,8 +24,7 @@ metadata:
   name: ingress-canary
   annotations:
     kubernetes.io/ingress.class: traefik
-    nginx.ingress.kubernetes.io/canary: "true"
-    nginx.ingress.kubernetes.io/canary-weight: "5"
+    traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
   rules:
   - host: psbonline-canary.development.ns1.civo.com
@@ -35,4 +35,4 @@ spec:
         backend:
           # Reference to a Service name, also specified in the Rollout spec.strategy.canary.stableService field
           serviceName: {{ .Values.serviceNameCanary  | quote}}
-          servicePort: 8080
+          servicePort: 8000
