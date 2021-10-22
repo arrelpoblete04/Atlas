@@ -4,7 +4,6 @@ metadata:
   name: ingress-stable
   annotations:
     kubernetes.io/ingress.class: traefik
-    ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
   - host: psbonline-stable.development.ns1.civo.com
