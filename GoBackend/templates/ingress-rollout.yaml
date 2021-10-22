@@ -1,36 +1,36 @@
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: ingress-stable
-  annotations:
-    kubernetes.io/ingress.class: traefik
-    traefik.ingress.kubernetes.io/router.entrypoints: web
-spec:
-  rules:
-  - host: {{ .Values.ingressStable  | quote}}
-    http:
-      paths:
-      - path: /election2022
-        backend:
-          serviceName: {{ .Values.serviceName  | quote}}
-          servicePort: 8080
+# apiVersion: extensions/v1beta1
+# kind: Ingress
+# metadata:
+#   name: ingress-stable
+#   annotations:
+#     kubernetes.io/ingress.class: traefik
+#     traefik.ingress.kubernetes.io/router.entrypoints: web
+# spec:
+#   rules:
+#   - host: {{ .Values.ingressStable  | quote}}
+#     http:
+#       paths:
+#       - path: /election2022
+#         backend:
+#           serviceName: {{ .Values.serviceName  | quote}}
+#           servicePort: 8080
 
----
+# ---
 
-apiVersion: networking.k8s.io/v1beta1
-kind: Ingress
-metadata:
-  name: ingress-canary
-  annotations:
-    kubernetes.io/ingress.class: traefik
-    traefik.ingress.kubernetes.io/router.entrypoints: web
-spec:
-  rules:
-  - host: {{ .Values.ingressCanary  | quote}}
-    http:
-      paths:
-      - path: /election2022
-        backend:
-          # Reference to a Service name, also specified in the Rollout spec.strategy.canary.stableService field
-          serviceName: {{ .Values.serviceNameCanary  | quote}}
-          servicePort: 8080
+# apiVersion: networking.k8s.io/v1beta1
+# kind: Ingress
+# metadata:
+#   name: ingress-canary
+#   annotations:
+#     kubernetes.io/ingress.class: traefik
+#     traefik.ingress.kubernetes.io/router.entrypoints: web
+# spec:
+#   rules:
+#   - host: {{ .Values.ingressCanary  | quote}}
+#     http:
+#       paths:
+#       - path: /election2022
+#         backend:
+#           # Reference to a Service name, also specified in the Rollout spec.strategy.canary.stableService field
+#           serviceName: {{ .Values.serviceNameCanary  | quote}}
+#           servicePort: 8080
