@@ -9,7 +9,8 @@ spec:
   - host: psbonline-stable.development.ns1.civo.com
     http:
       paths:
-      - path: /election2022
+      - path: /
+        pathType: Prefix
         backend:
           serviceName: {{ .Values.serviceName  | quote}}
           servicePort: 8080
@@ -26,7 +27,7 @@ metadata:
     nginx.ingress.kubernetes.io/canary-weight: "5"
 spec:
   rules:
-  - host: rollouts-gobackend-canary
+  - host: psbonline-canary.development.ns1.civo.com
     http:
       paths:
       - path: /
