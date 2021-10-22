@@ -15,6 +15,7 @@ func GetCandidateInfo(logger *log.Entry) (ElectionResponse, error) {
 		{Name: "Vice President", Level: "National"},
 		{Name: "Senator", Level: "National"},
 		{Name: "Governor", Level: "Local"},
+		{Name: "Mayor", Level: "Local"},
 	}
 
 	electionResponse := ElectionResponse{
