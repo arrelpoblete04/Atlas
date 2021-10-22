@@ -4,13 +4,13 @@ metadata:
   name: ingress-stable
   annotations:
     kubernetes.io/ingress.class: traefik
-    ingress.kubernetes.io/rewrite-target: /
+    traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
   rules:
-  - host: rollouts-gobackend
+  - host: {{ .Values.ingressStable  | quote}}
     http:
       paths:
-      - path: /
+      - path: /election2022
         backend:
           serviceName: {{ .Values.serviceName  | quote}}
           servicePort: 8080
@@ -23,15 +23,13 @@ metadata:
   name: ingress-canary
   annotations:
     kubernetes.io/ingress.class: traefik
-    nginx.ingress.kubernetes.io/canary: "true"
-    nginx.ingress.kubernetes.io/canary-weight: "5"
+    traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
   rules:
-  - host: rollouts-gobackend-canary
+  - host: {{ .Values.ingressCanary  | quote}}
     http:
       paths:
-      - path: /
-        pathType: Prefix
+      - path: /election2022
         backend:
           # Reference to a Service name, also specified in the Rollout spec.strategy.canary.stableService field
           serviceName: {{ .Values.serviceNameCanary  | quote}}

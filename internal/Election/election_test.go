@@ -30,12 +30,10 @@ func TestGetCandidateInfo(t *testing.T) {
 
 	scenarios := []struct {
 		testCase   string
-		name       string
 		urlPath    string
 		statusCode int
 	}{
-		{testCase: "Valid Name", name: "president", urlPath: "/election2022", statusCode: http.StatusOK},
-		{testCase: "Blank Name", name: "", urlPath: "/election2022", statusCode: http.StatusBadRequest},
+		{testCase: "Valid Name", urlPath: "/election2022", statusCode: http.StatusOK},
 	}
 
 	for _, scenario := range scenarios {
@@ -46,10 +44,6 @@ func TestGetCandidateInfo(t *testing.T) {
 			if errorNewRequest != nil {
 				t.Errorf("Test Failed. There's an error in wrapping the request. %s", errorNewRequest.Error())
 			}
-
-			q := request.URL.Query()
-			q.Add("position", scenario.name)
-			request.URL.RawQuery = q.Encode()
 
 			r := gin.Default()
 			r.Use(appendRequestIdLogging())

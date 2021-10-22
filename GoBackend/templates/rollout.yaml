@@ -48,7 +48,7 @@ spec:
   strategy:
     # canary: #Indicates that the rollout should use the Canary strategy
     #   canaryService: {{ .Values.serviceNameCanary  | quote}}
-    #   stableService: {{ .Values.serviceName  | quote}}
+    #   #stableService: {{ .Values.serviceName  | quote}}
     #   maxSurge: "25%"
     #   maxUnavailable: 0
     #   steps:
@@ -59,5 +59,5 @@ spec:
     #   - pause: {} # pause indefinitely
       blueGreen:
          autoPromotionEnabled: false
-         activeService: backendgolang
-         previewService: backendgolang-canary
+         activeService: {{ .Values.serviceName  | quote}}
+         previewService: {{ .Values.serviceNameCanary  | quote}}
