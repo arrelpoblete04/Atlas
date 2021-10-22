@@ -23,7 +23,7 @@ func main() {
 	router := gin.Default()
 
 	router.Use(appendRequestIdLogging())
-	router.GET("/", election.ElectionController())
+	router.GET("/election2022", election.ElectionController())
 
 	port := os.Getenv("PORT")
 

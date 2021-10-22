@@ -10,11 +10,10 @@ spec:
   - host: psbonline-stable.development.ns1.civo.com
     http:
       paths:
-      - path: /
-        pathType: Prefix
+      - path: /election2022
         backend:
           serviceName: {{ .Values.serviceName  | quote}}
-          servicePort: 8000
+          servicePort: 8080
 
 ---
 
@@ -30,9 +29,8 @@ spec:
   - host: psbonline-canary.development.ns1.civo.com
     http:
       paths:
-      - path: /
-        pathType: Prefix
+      - path: /election2022
         backend:
           # Reference to a Service name, also specified in the Rollout spec.strategy.canary.stableService field
           serviceName: {{ .Values.serviceNameCanary  | quote}}
-          servicePort: 8000
+          servicePort: 8080
