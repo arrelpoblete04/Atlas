@@ -1,22 +1,20 @@
 package election
 
 import (
-	"errors"
 	"net/http"
 
 	log "github.com/sirupsen/logrus"
 )
 
-func GetCandidateInfo(logger *log.Entry, position string) (ElectionResponse, error) {
+func GetCandidateInfo(logger *log.Entry) (ElectionResponse, error) {
 
 	logger.Infoln("Start - GetCandidateInfo")
 
-	if position == "" {
-		return ElectionResponse{}, errors.New("Parameter Position should not be empty.")
-	}
-
-	candidateList := []Candidate{
-		{Name: "Leni Robredo", Position: "President"},
+	candidateList := []Official{
+		{Name: "President", Level: "National"},
+		{Name: "Vice President", Level: "National"},
+		{Name: "Senator", Level: "National"},
+		{Name: "Governor", Level: "Local"},
 	}
 
 	electionResponse := ElectionResponse{

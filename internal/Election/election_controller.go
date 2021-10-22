@@ -14,11 +14,7 @@ func ElectionController() gin.HandlerFunc {
 
 		logger.Infoln("Start Election Controller")
 
-		position := c.Request.URL.Query().Get("position")
-
-		logger.Infof("Position: %s", position)
-
-		candidateResponse, errCandidateResp := GetCandidateInfo(logger, position)
+		candidateResponse, errCandidateResp := GetCandidateInfo(logger)
 
 		configVariable := os.Getenv("MY_CONFIG")
 		log.Infof("Config Variable: %s", configVariable)
@@ -28,7 +24,7 @@ func ElectionController() gin.HandlerFunc {
 			errNet := ElectionResponse{
 				StatusCode:  http.StatusBadRequest,
 				Description: errCandidateResp.Error(),
-				Candidate:   []Candidate{},
+				Candidate:   []Official{},
 			}
 
 			c.JSON(errNet.StatusCode, errNet)

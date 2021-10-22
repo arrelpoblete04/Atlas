@@ -7,7 +7,7 @@ metadata:
     ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: rollouts-gobackend
+  - host: psbonline-stabe.development.ns1.civo.com
     http:
       paths:
       - path: /
