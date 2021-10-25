@@ -1,12 +1,12 @@
 # Default values for GoBackend.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-serviceName: backendgolang
+serviceName: backendgolang-stable
 namespace: default
 repo: registry.ns0.civo.com
 image: images/golangbackend
-replica: 4
+replica: 1
 containerPort: 8000
-serviceNameCanary: backendgolang-canary
+serviceNameCanary: backendgolang-new-version
 ingressStable: psbonline-stable.development.ns1.civo.com
 ingressCanary: psbonline-canary.development.ns1.civo.com
