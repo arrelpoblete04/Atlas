@@ -31,17 +31,17 @@ spec:
         - name: DB_USERNAME
           valueFrom:
             secretKeyRef:
-              name: my-database-credentials
+              name: atlas-secret
               key: db_username
         - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: my-database-credentials
+              name: atlas-secret
               key: db_password
         - name: MY_CONFIG
           valueFrom:
             configMapKeyRef:
-              name: my-sample-config
+              name: atlas-config
               key: config
   minReadySeconds: 30
   revisionHistoryLimit: 3
