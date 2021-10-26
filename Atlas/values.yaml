@@ -9,5 +9,5 @@ replica: 4
 containerPort: 8000
 serviceNew: atlas-svc-new
 ingressStable: psbonline-stable.development.ns1.civo.com
-ingressNew: psbonline-canary.development.ns1.civo.com
+ingressNew: psbonline-new.development.ns1.civo.com
 appName: atlas
