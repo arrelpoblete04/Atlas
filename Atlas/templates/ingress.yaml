@@ -12,7 +12,7 @@ spec:
       paths:
       - path: /atlas
         backend:
-          serviceName: {{ .Values.serviceName  | quote}}
+          serviceName: {{ .Values.serviceStable  | quote}}
           servicePort: 8080
 
 ---
@@ -26,11 +26,11 @@ metadata:
     traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
   rules:
-  - host: {{ .Values.ingressCanary  | quote}}
+  - host: {{ .Values.ingressNew  | quote}}
     http:
       paths:
       - path: /atlas
         backend:
           # Reference to a Service name, also specified in the Rollout spec.strategy.canary.stableService field
-          serviceName: {{ .Values.serviceNameCanary  | quote}}
+          serviceName: {{ .Values.serviceNew  | quote}}
           servicePort: 8080

@@ -3,9 +3,9 @@ kind: Service
 metadata:
   creationTimestamp: null
   labels:
-    app: {{ .Values.serviceName  | quote}}
+    app: {{ .Values.serviceStable  | quote}}
     app.kubernetes.io/managed-by: Helm
-  name: {{ .Values.serviceName  | quote}}
+  name: {{ .Values.serviceStable  | quote}}
   namespace: {{ .Values.namespace  | quote}}
 spec:
   ports:
@@ -25,9 +25,9 @@ kind: Service
 metadata:
   creationTimestamp: null
   labels:
-    app: {{ .Values.serviceNameCanary  | quote}}
+    app: {{ .Values.serviceNew | quote}}
     app.kubernetes.io/managed-by: Helm
-  name: {{ .Values.serviceNameCanary  | quote}}
+  name: {{ .Values.serviceNew  | quote}}
   namespace: {{ .Values.namespace  | quote}}
 spec:
   ports:
