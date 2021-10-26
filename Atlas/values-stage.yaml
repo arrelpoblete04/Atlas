@@ -5,7 +5,7 @@ serviceName: atlas-svc-stable
 namespace: default
 repo: registry.ns0.civo.com
 image: images/golangbackend
-replica: 6
+replica: 3
 containerPort: 8000
 serviceNameCanary: atlas-svc-new
 ingressStable: psbonline-stable.staging.ns1.civo.com
