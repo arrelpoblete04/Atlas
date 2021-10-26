@@ -47,8 +47,7 @@ spec:
   revisionHistoryLimit: 3
   strategy:
     canary: #Indicates that the rollout should use the Canary strategy
-      #canaryService: {{ .Values.serviceNameCanary  | quote}}
-      #stableService: {{ .Values.serviceName  | quote}}
+      canaryService: {{ .Values.serviceNew  | quote}}
       maxSurge: "25%"
       maxUnavailable: 0
       steps:
