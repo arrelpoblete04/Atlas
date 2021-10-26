@@ -7,7 +7,7 @@ repo: registry.ns0.civo.com
 image: images/golangbackend
 replica: 6
 containerPort: 8000
-serviceNameCanary: atlas-new-canary
+serviceNameCanary: atlas-svc-new
 ingressStable: psbonline-stable.staging.ns1.civo.com
 ingressCanary: psbonline-canary.staging.ns1.civo.com
 appName: atlas
