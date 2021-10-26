@@ -1,4 +1,4 @@
-module app.election
+module app.atlas
 
 go 1.17
 

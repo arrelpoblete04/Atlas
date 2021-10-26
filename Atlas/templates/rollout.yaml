@@ -3,19 +3,19 @@ kind: Rollout
 metadata:
   creationTimestamp: null
   labels:
-    app: {{ .Values.serviceName  | quote}}
-  name: {{ .Values.serviceName  | quote}}
+    app: {{ .Values.appName  | quote}}
+  name: atlas-rollout
   namespace: {{ .Values.namespace  | quote}}
 spec:
   replicas: {{ .Values.replica }}
   selector:
     matchLabels:
-      app: {{ .Values.serviceName  | quote}}
+      app: {{ .Values.appName  | quote}}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: {{ .Values.serviceName  | quote}}
+        app: {{ .Values.appName  | quote}}
     spec:
       containers:
       - image: {{ .Values.repo }}/{{ .Values.image }}:{{.Chart.AppVersion}}
