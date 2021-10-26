@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"os"
 
-	election "app.election/internal/Election"
+	atlas "app.atlas/internal/Atlas"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 
@@ -14,16 +14,10 @@ import (
 
 func main() {
 
-	// db_user := url.QueryEscape(os.Getenv("DB_USERNAME"))
-	// db_password := url.QueryEscape(os.Getenv("DB_PASSWORD"))
-	// s := database.DB(db_user, db_password)
-
-	// errorPing := s.Ping()
-
 	router := gin.Default()
 
 	router.Use(appendRequestIdLogging())
-	router.GET("/election2022", election.ElectionController())
+	router.GET("/atlas", atlas.AtlasController())
 
 	port := os.Getenv("PORT")
 

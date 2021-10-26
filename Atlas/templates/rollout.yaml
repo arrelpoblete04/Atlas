@@ -3,19 +3,19 @@ kind: Rollout
 metadata:
   creationTimestamp: null
   labels:
-    app: {{ .Values.serviceName  | quote}}
-  name: {{ .Values.serviceName  | quote}}
+    app: {{ .Values.appName  | quote}}
+  name: atlas-rollout
   namespace: {{ .Values.namespace  | quote}}
 spec:
   replicas: {{ .Values.replica }}
   selector:
     matchLabels:
-      app: {{ .Values.serviceName  | quote}}
+      app: {{ .Values.appName  | quote}}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: {{ .Values.serviceName  | quote}}
+        app: {{ .Values.appName  | quote}}
     spec:
       containers:
       - image: {{ .Values.repo }}/{{ .Values.image }}:{{.Chart.AppVersion}}
@@ -31,24 +31,23 @@ spec:
         - name: DB_USERNAME
           valueFrom:
             secretKeyRef:
-              name: my-database-credentials
+              name: atlas-secret
               key: db_username
         - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: my-database-credentials
+              name: atlas-secret
               key: db_password
         - name: MY_CONFIG
           valueFrom:
             configMapKeyRef:
-              name: my-sample-config
+              name: atlas-config
               key: config
   minReadySeconds: 30
   revisionHistoryLimit: 3
   strategy:
     # canary: #Indicates that the rollout should use the Canary strategy
-    #   canaryService: {{ .Values.serviceNameCanary  | quote}}
-    #   #stableService: {{ .Values.serviceName  | quote}}
+    #   canaryService: {{ .Values.serviceNew  | quote}}
     #   maxSurge: "25%"
     #   maxUnavailable: 0
     #   steps:
@@ -59,5 +58,5 @@ spec:
     #   - pause: {} # pause indefinitely
       blueGreen:
          autoPromotionEnabled: false
-         activeService: {{ .Values.serviceName  | quote}}
-         previewService: {{ .Values.serviceNameCanary  | quote}}
+         activeService: {{ .Values.serviceStable  | quote}}
+         previewService: {{ .Values.serviceNew  | quote}}

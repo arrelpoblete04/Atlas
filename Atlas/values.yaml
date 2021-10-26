@@ -1,0 +1,21 @@
+# Default values for GoBackend.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+<<<<<<< HEAD:GoBackend/values.yaml
+serviceName: backendgolang-stable
+=======
+serviceStable: atlas-svc-stable
+>>>>>>> 11ad9a1fc8e0fdca11b963bc103f5f1a3324ef8f:Atlas/values.yaml
+namespace: default
+repo: registry.ns0.civo.com
+image: images/golangbackend
+replica: 1
+containerPort: 8000
+<<<<<<< HEAD:GoBackend/values.yaml
+serviceNameCanary: backendgolang-new-version
+=======
+serviceNew: atlas-svc-new
+>>>>>>> 11ad9a1fc8e0fdca11b963bc103f5f1a3324ef8f:Atlas/values.yaml
+ingressStable: psbonline-stable.development.ns1.civo.com
+ingressNew: psbonline-canary.development.ns1.civo.com
+appName: atlas

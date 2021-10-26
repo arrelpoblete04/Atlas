@@ -1,4 +1,4 @@
-package election
+package atlas
 
 import (
 	"encoding/json"
@@ -26,14 +26,14 @@ func appendRequestIdLogging() gin.HandlerFunc {
 	}
 }
 
-func TestGetCandidateInfo(t *testing.T) {
+func TestGetCapitalInfo(t *testing.T) {
 
 	scenarios := []struct {
 		testCase   string
 		urlPath    string
 		statusCode int
 	}{
-		{testCase: "Valid Name", urlPath: "/election2022", statusCode: http.StatusOK},
+		{testCase: "Valid Name", urlPath: "/atlas", statusCode: http.StatusOK},
 	}
 
 	for _, scenario := range scenarios {
@@ -48,12 +48,12 @@ func TestGetCandidateInfo(t *testing.T) {
 			r := gin.Default()
 			r.Use(appendRequestIdLogging())
 			rr := httptest.NewRecorder()
-			r.GET(scenario.urlPath, ElectionController())
+			r.GET(scenario.urlPath, AtlasController())
 			r.ServeHTTP(rr, request)
 
 			t.Log(rr.Body)
 
-			var response ElectionResponse
+			var response AtlasResponse
 			err := json.Unmarshal(rr.Body.Bytes(), &response)
 			if err != nil {
 				t.Error("Error while unmarshalling response")

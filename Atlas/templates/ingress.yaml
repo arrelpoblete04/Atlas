@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: ingress-stable
+  name: atlas-ing-stable
   annotations:
     kubernetes.io/ingress.class: traefik
     traefik.ingress.kubernetes.io/router.entrypoints: web
@@ -10,27 +10,27 @@ spec:
   - host: {{ .Values.ingressStable  | quote}}
     http:
       paths:
-      - path: /election2022
+      - path: /atlas
         backend:
-          serviceName: {{ .Values.serviceName  | quote}}
+          serviceName: {{ .Values.serviceStable  | quote}}
           servicePort: 8080
 
 ---
 
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: ingress-canary
+  name: atlas-ing-new
   annotations:
     kubernetes.io/ingress.class: traefik
     traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
   rules:
-  - host: {{ .Values.ingressCanary  | quote}}
+  - host: {{ .Values.ingressNew  | quote}}
     http:
       paths:
-      - path: /election2022
+      - path: /atlas
         backend:
           # Reference to a Service name, also specified in the Rollout spec.strategy.canary.stableService field
-          serviceName: {{ .Values.serviceNameCanary  | quote}}
+          serviceName: {{ .Values.serviceNew  | quote}}
           servicePort: 8080

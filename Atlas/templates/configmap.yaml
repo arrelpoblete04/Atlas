@@ -4,5 +4,5 @@ data:
 kind: ConfigMap
 metadata:
   creationTimestamp: null
-  name: my-sample-config
+  name: atlas-config
   namespace: {{ .Values.namespace  | quote}}
