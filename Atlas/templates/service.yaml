@@ -20,22 +20,22 @@ status:
 
 ---
 
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   creationTimestamp: null
-#   labels:
-#     app: {{ .Values.serviceNew | quote}}
-#     app.kubernetes.io/managed-by: Helm
-#   name: {{ .Values.serviceNew  | quote}}
-#   namespace: {{ .Values.namespace  | quote}}
-# spec:
-#   ports:
-#   - port: 8080
-#     protocol: TCP
-#     targetPort: 8000
-#   selector:
-#     app: {{ .Values.appName  | quote}}
-#   type: ClusterIP
-# status:
-#   loadBalancer: {}
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: {{ .Values.serviceNew | quote}}
+    app.kubernetes.io/managed-by: Helm
+  name: {{ .Values.serviceNew  | quote}}
+  namespace: {{ .Values.namespace  | quote}}
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8000
+  selector:
+    app: {{ .Values.appName  | quote}}
+  type: ClusterIP
+status:
+  loadBalancer: {}
