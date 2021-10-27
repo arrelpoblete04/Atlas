@@ -17,20 +17,20 @@ spec:
 
 ---
 
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: atlas-ing-new
-  annotations:
-    kubernetes.io/ingress.class: traefik
-    traefik.ingress.kubernetes.io/router.entrypoints: web
-spec:
-  rules:
-  - host: {{ .Values.ingressNew  | quote}}
-    http:
-      paths:
-      - path: /atlas
-        backend:
-          # Reference to a Service name, also specified in the Rollout spec.strategy.canary.stableService field
-          serviceName: {{ .Values.serviceNew  | quote}}
-          servicePort: 8080
+# apiVersion: extensions/v1beta1
+# kind: Ingress
+# metadata:
+#   name: atlas-ing-new
+#   annotations:
+#     kubernetes.io/ingress.class: traefik
+#     traefik.ingress.kubernetes.io/router.entrypoints: web
+# spec:
+#   rules:
+#   - host: {{ .Values.ingressNew  | quote}}
+#     http:
+#       paths:
+#       - path: /atlas
+#         backend:
+#           # Reference to a Service name, also specified in the Rollout spec.strategy.canary.stableService field
+#           serviceName: {{ .Values.serviceNew  | quote}}
+#           servicePort: 8080
