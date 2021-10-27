@@ -33,7 +33,7 @@ func TestGetCapitalInfo(t *testing.T) {
 		urlPath    string
 		statusCode int
 	}{
-		{testCase: "Valid Name", urlPath: "/atlas", statusCode: http.StatusOK},
+		{testCase: "Valid Name", urlPath: "/atlas", statusCode: http.StatusBadRequest},
 	}
 
 	for _, scenario := range scenarios {
