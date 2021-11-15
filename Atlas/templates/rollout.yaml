@@ -21,28 +21,13 @@ spec:
       - image: {{ .Values.repo }}/{{ .Values.image }}:{{.Chart.AppVersion}}
         ports:
         - containerPort: {{ .Values.containerPort }}
+        imagePullSecrets:
+        - name: regcred
         name: backend-service
         resources: {}
         env:
         - name: PORT
           value: {{ .Values.containerPort | quote}}
-        - name: MYSQL_KUBE
-          value: root:password@tcp(10.1.0.57:3306)/colors
-        - name: DB_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: atlas-secret
-              key: db_username
-        - name: DB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: atlas-secret
-              key: db_password
-        - name: MY_CONFIG
-          valueFrom:
-            configMapKeyRef:
-              name: atlas-config
-              key: config
   minReadySeconds: 30
   revisionHistoryLimit: 3
   strategy:
