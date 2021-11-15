@@ -17,14 +17,12 @@ spec:
       labels:
         app: {{ .Values.appName  | quote}}
     spec:
-      # imagePullSecrets:
-      #   - name: regcred
+      imagePullSecrets:
+        - name: regcred
       containers:
       - image: {{ .Values.repo }}/{{ .Values.image }}:{{.Chart.AppVersion}}
         ports:
         - containerPort: {{ .Values.containerPort }}
-        imagePullSecrets:
-        - name: regcred
         name: backend-service
         resources: {}
         env:
