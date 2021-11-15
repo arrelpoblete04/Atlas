@@ -8,6 +8,6 @@ image: development
 replica: 4
 containerPort: 8000
 serviceNew: atlas-svc-new
-ingressStable: psbonline-stable.development.ns1.civo.com
-ingressNew: psbonline-new.development.ns1.civo.com
+ingressStable: stable-development.cicd.psbulap.com
+ingressNew: new-development.cicd.psbulap.com
 appName: atlas
