@@ -4,7 +4,7 @@
 serviceStable: atlas-svc-stable
 namespace: development
 repo: registry.psbulap.com
-image: development-uat
+image: development
 replica: 5
 containerPort: 8000
 serviceNew: atlas-svc-new
