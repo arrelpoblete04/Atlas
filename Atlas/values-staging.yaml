@@ -4,7 +4,7 @@
 serviceStable: atlas-svc-stable
 namespace: default
 repo: registry.psbulap.com
-image: staging
+image: staging/atlas
 replica: 3
 containerPort: 8000
 serviceNew: atlas-svc-new
