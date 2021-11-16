@@ -12,10 +12,11 @@ func GetCapitalInfo(logger *log.Entry) (AtlasResponse, error) {
 
 	countryList := []Country{
 		{Name: "Philippines", Capital: "Manila City"},
-		{Name: "Indonesia", Capital: "Jakarta"},
-		{Name: "Vietnam", Capital: "Hanoi"},
-		{Name: "Thailand", Capital: "Bangkok"},
-		{Name: "Malaysia", Capital: "Kuala Lumpur"},
+		{Name: "Indonesia", Capital: "Jakarta City"},
+		{Name: "Vietnam", Capital: "Hanoi City"},
+		{Name: "Thailand", Capital: "Bangkok City"},
+		{Name: "Malaysia", Capital: "Kuala Lumpur City"},
+		{Name: "Singapore", Capital: "Singapore City"},
 	}
 
 	atlasResponse := AtlasResponse{
