@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 serviceStable: atlas-svc-stable
 namespace: development
-repo: arrelpoblete
+repo: registry.psbulap.com
 image: development
 replica: 4
 containerPort: 8000
